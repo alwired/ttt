@@ -1,2 +1,2 @@
 # ttt
-Single player Tic Tac Toe in C
+Single player Tic-Tac-Toe in C
