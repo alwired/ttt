@@ -83,7 +83,7 @@ void print_board(int x_board, int o_board) {
 // returns evaluation of board (-1,0,1)
 // move is set to best move found in bitboard representation
 find_move(int board, int x_board, int o_board, char side, int d, int *move, int *count) {
-	if (side == 'X' && win(o_board) || side == 'O' && win(x_board)) {
+	if ((side == 'X' && win(o_board)) || (side == 'O' && win(x_board))) {
 		return -1;
 	} else if (board == 511) {
 		return 0;
@@ -117,8 +117,6 @@ find_move(int board, int x_board, int o_board, char side, int d, int *move, int 
 				side = 'X';
 			}
 
-			//printf("move:\n");
-			//print_board(x_board, o_board);
 			value = -find_move(board, x_board, o_board, side, d + 1, move, count);
 
 			// reset boards and sides for this function level
@@ -135,7 +133,7 @@ find_move(int board, int x_board, int o_board, char side, int d, int *move, int 
 			if (d == 0) {
 				if (value == 1) {
 					*move = c;
-					return value;
+					//return value;
 				} else if (value == 0) {
 					*move = c;
 				}
@@ -217,7 +215,7 @@ void init_game() {
 		printf("Welcome to Tic Tac Toe.\n\n");
 		print_board(x_board, o_board);
 		if (board) {
-			printf("\nAfter thinking about it really hard, the computer picked a move!\n", *count);
+			printf("\nAnalyzed %d moves\nAfter thinking about it really hard, the computer picked a move!\n", *count);
 		}
 		
 		for (int i = 0; i < 9; i++) {
@@ -293,7 +291,7 @@ void init_game() {
 			break;
 		}
 	}
-	
+
 	
 	free(computer_move);
 	free(count);
