@@ -12,4 +12,5 @@ bool win(int board);
 int turn(int board, int move);
 void print_board(int x_board, int o_board);
 int find_move(int board, int x_board, int o_board, char side, int d, int *move, int *count);
-bool game_over(board, x_board, o_board, side);
+bool game_over(int board, int x_board, int o_board, char side);
+void clear(int n);

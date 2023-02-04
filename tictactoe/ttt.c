@@ -208,6 +208,7 @@ void init_game() {
 		scanf(" %c", &side);
 		side = strupr(&side)[0];
 	}
+
 	(side == 'X') ? (computer_side = 'O') : (computer_side = 'X');
 
 	while (board != 511) {
@@ -310,50 +311,3 @@ int main () {
 
 	return 0;	
 }
-
-// Notes
-// char *c is pointer to static array, char c[] is like normal array
-// don't use pointer increment in format specifiers- undefined eval order
-// use fgets instead of scanf
-// + '0' convert int to char
-
-	
-	
-
-	// board_to_str(str_x_board, x_board, 1);
-	// printf("%s", board_to_str(str_x_board, x_board, 1));
-	
-	//////////////////
-	// find move testing
-	/////////
-	/*
-	x_board = 0b010101100; 
-	o_board = 0b101010000;
-	board = x_board | o_board;
-	print_board(x_board, o_board);
-	int *m = malloc (sizeof(int));
-	*m = 3;
-	find_move(board, x_board, o_board, 'X', 0, m);
-	printf("%d\n", *m);
-	*/
-	/*
-	board |= m;
-	x_board |= m;
-	printf("\n%d\n", m);
-	print_board(x_board, o_board);
-	
-	x_board = 0b010111000;
-	o_board = 0b101000111;
-	
-	board_to_str(str_o_board, o_board, 0);
-	board_to_str(str_x_board, x_board, 1);
-	printf("%s\n", str_x_board);
-	printf("%s\n", str_o_board);
-	
-	combine_xo(str_xo_board, str_x_board, str_o_board);
-	printf("%s\n", str_xo_board);
-
-	get_board(str_board, str_xo_board);
-	printf("%s\n", str_board);
-	*/
-	// print_board(x_board, o_board);
