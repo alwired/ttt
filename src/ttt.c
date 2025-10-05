@@ -1,4 +1,49 @@
+/////////////
+/////////////
+// TODO
+// refactor input functions
+// add tests
+// check header functions, declare private funcs
+/////////////
+/////////////
+
+
 #include "ttt.h"
+
+// fgets wrapper
+char *get_input(char *buf, int size, FILE *stream) {
+	if (!(fgets(buf, size, stream))) {
+		return NULL;
+	}
+	// remove newline
+	buf[strcspn(buf, "\n")] = 0;
+	int c;
+	// consume stdin
+	while ((c = getchar()) != '\n' && c != EOF);
+	return buf;
+}
+
+// returns 0 if invalid
+int get_input_to_int(char *buf, int size, FILE *stream) {
+	// simple way, ok for this program, but can't distinguish 0 or %d%c
+	char *str = get_input(buf, size, stream);
+	if (!str) {
+		return 0;
+	}
+	return atoi(str);
+
+	// // robust way
+	// char *endptr;
+	// errno = 0;
+	// long res = strtol(buf, &endptr, 10);
+
+	// // (for proper error handling, throw an exception or make a result pointer parameter)
+	// if (errno == ERANGE) return -1;		// overflow
+	// if (endptr == str) return -1;		// no digits found
+    // if (*endptr != '\0') return -1;		// leftover characters
+	// return (int)res;
+}
+
 
 // unused
 char *replace_char (char *str, char f, char r) {
@@ -143,7 +188,7 @@ find_move(int board, int x_board, int o_board, char side, int d, int *move, int 
 	return best;
 }
 
-bool game_over(board, x_board, o_board, side) {
+bool game_over(int board, int x_board, int o_board, char side) {
 	bool over = false;
 	system("cls");
 	printf("Welcome to Tic Tac Toe.\n\n");
@@ -186,6 +231,7 @@ void clear(int n) {
 	return;
 }
 
+// change side, move
 void init_game() {
 	int board = 0b000000000;
 	int x_board = 0b000000000;
@@ -298,16 +344,20 @@ void init_game() {
 	free(count);
 }
 
-int main () {
+int init_menu(FILE *stream) {
 	char play_again = 'n';
-
 	do {
 		system("cls");
 		init_game();
 		printf("Would you like to play again? y/n\n");
 		scanf(" %c", &play_again);
+		// deprecated function, use different with unsigned cast
 	} while (strlwr(&play_again)[0] == 'y');
 
+	return 0;
+}
 
+int main () {
+	init_menu(stdin);
 	return 0;	
 }

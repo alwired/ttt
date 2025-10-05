@@ -2,8 +2,10 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <math.h>
+#include <errno.h>
 #include <windows.h>
 
+char *get_input(char *buf, int size, FILE *stream);
 char *replace_char (char *str, char f, char r);
 char *board_to_str (char *str, int b, int x);
 char *combine_xo(char *str, char *x, char *o);
