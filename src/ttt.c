@@ -10,6 +10,10 @@
 
 #include "ttt.h"
 
+bool atest(void) {
+	return true;
+}
+
 // fgets wrapper
 char *get_input(char *buf, int size, FILE *stream) {
 	if (!(fgets(buf, size, stream))) {
@@ -127,7 +131,7 @@ void print_board(int x_board, int o_board) {
 
 // returns evaluation of board (-1,0,1)
 // move is set to best move found in bitboard representation
-find_move(int board, int x_board, int o_board, char side, int d, int *move, int *count) {
+int find_move(int board, int x_board, int o_board, char side, int d, int *move, int *count) {
 	if ((side == 'X' && win(o_board)) || (side == 'O' && win(x_board))) {
 		return -1;
 	} else if (board == 511) {
@@ -355,9 +359,4 @@ int init_menu(FILE *stream) {
 	} while (strlwr(&play_again)[0] == 'y');
 
 	return 0;
-}
-
-int main () {
-	init_menu(stdin);
-	return 0;	
 }

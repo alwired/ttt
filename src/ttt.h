@@ -5,6 +5,7 @@
 #include <errno.h>
 #include <windows.h>
 
+bool atest(void);
 char *get_input(char *buf, int size, FILE *stream);
 char *replace_char (char *str, char f, char r);
 char *board_to_str (char *str, int b, int x);
